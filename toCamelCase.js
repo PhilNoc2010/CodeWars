@@ -10,8 +10,8 @@ function toCamelCase(str){
 
   for (var i=1;i<words.length;i++){
     var temp = words[i].substr(0,1)
-    temp = temp.touppercase()
-    temp = temp +  words[i].substr(1,words.length)
+    temp = temp.toUpperCase()
+    temp = temp +  words[i].slice(1)
     console.log(temp)
     outStr = outStr + temp
   }
