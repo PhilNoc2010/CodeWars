@@ -7,32 +7,32 @@
 
 function decodeMorse(morseCode){
     const morseRef = {
-        '.-':     'a',
-        '-...':   'b',
-        '-.-.':   'c',
-        '-..':    'd',
-        '.':      'e',
-        '..-.':   'f',
-        '--.':    'g',
-        '....':   'h',
-        '..':     'i',
-        '.---':   'j',
-        '-.-':    'k',
-        '.-..':   'l',
-        '--':     'm',
-        '-.':     'n',
-        '---':    'o',
-        '.--.':   'p',
-        '--.-':   'q',
-        '.-.':    'r',
-        '...':    's',
-        '-':      't',
-        '..-':    'u',
-        '...-':   'v',
-        '.--':    'w',
-        '-..-':   'x',
-        '-.--':   'y',
-        '--..':   'z',
+        '.-':     'A',
+        '-...':   'B',
+        '-.-.':   'C',
+        '-..':    'D',
+        '.':      'E',
+        '..-.':   'F',
+        '--.':    'G',
+        '....':   'H',
+        '..':     'I',
+        '.---':   'J',
+        '-.-':    'K',
+        '.-..':   'L',
+        '--':     'M',
+        '-.':     'N',
+        '---':    'O',
+        '.--.':   'P',
+        '--.-':   'Q',
+        '.-.':    'R',
+        '...':    'S',
+        '-':      'T',
+        '..-':    'U',
+        '...-':   'V',
+        '.--':    'W',
+        '-..-':   'X',
+        '-.--':   'Y',
+        '--..':   'Z',
         '.----':  '1',
         '..---':  '2',
         '...--':  '3',
@@ -43,19 +43,26 @@ function decodeMorse(morseCode){
         '---..':  '8',
         '----.':  '9',
         '-----':  '0',
+        '...---...':  'SOS',
+        '-.-.--':     '!',
+        '.-.-.-':     '.',
       };
 
     // A triple space is used to split up words in a Morse Code message
     let message = ""
-    let morseWords = morseCode.split("   ")
-    console.log(morseWords)
+    let morseWords = morseCode.trim().split("   ")
 
     for (i = 0; i < morseWords.length; i++){
         // a single space is used in between letters in a morse code message
         let morseLetters = morseWords[i].split(" ")
-        console.log(morseLetters)
+        for (j = 0; j < morseLetters.length ; j++) {
+          message += morseRef[morseLetters[j]]
+        }
+        message += " "
     }
-
+    return message.trim()
   }
 
-  decodeMorse('.... . -.--   .--- ..- -.. .')
+  console.log(decodeMorse('.... . -.--   .--- ..- -.. .'))
+
+  console.log(decodeMorse('...---... -.-.--   - .... .   --.- ..- .. -.-. -.-   -... .-. --- .-- -.   ..-. --- -..-   .--- ..- -- .--. ...   --- ...- . .-.   - .... .   .-.. .- --.. -.--   -.. --- --. .-.-.-  '))
