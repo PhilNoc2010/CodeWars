@@ -12,23 +12,30 @@
 
 
 function scramble(str1, str2) {
-    letters = str2.split('')
-    for (i = 0; i < letters.length; i++){
-        let idx = str1.indexOf(letters[i])
-        if (idx === -1) {
+    // start by using the helper function to make frequency tables for each incoming string
+    const str1Map = makeFreqTable(str1)
+    const str2Map = makeFreqTable(str2)
+    // iterate through str2Map and ensure that each value occurs
+    for (const [letter, value] of Object.entries(str2Map)){
+        if (value > str1Map[letter] || str1Map[letter] == undefined) {
             return false
-        } else {
-            // remove the located character from str1 in order to prevent issues when characters appear multiple times
-            str1 = str1.slice(0,idx) + str1.slice(idx+1)
         }
     }
     return true;
   }
 
-  console.log(scramble('rkqodlw', 'world'))
-  console.log(scramble('cedewaraaossoqqyt', 'codewars'))
-  console.log(scramble('katas', 'steak'))
-  console.log(scramble('scriptjavx','javascript'))  //<<--
+  function makeFreqTable(string) {
+    const map = {};
+    for (let i = 0; i < string.length; i++) {
+        map[string[i]] = (map[string[i]] || 0) + 1
+    }
+    return map;
+  }
+
+// console.log(scramble('rkqodlw', 'world'))
+// console.log(scramble('cedewaraaossoqqyt', 'codewars'))
+// console.log(scramble('katas', 'steak'))
+// console.log(scramble('scriptjavx','javascript'))  //<<--
 
   console.log(scramble('scriptingjava','javascript'))
   console.log(scramble('scriptsjava','javascripts'))

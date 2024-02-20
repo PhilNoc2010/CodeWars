@@ -13,5 +13,14 @@
 # Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 
 def to_jaden_case(string):
-    # ...
-    pass
+    words = string.rsplit(" ")
+
+    for i in range(len(words)):
+        words[i] = words[i].capitalize()
+
+    output = " ".join(words)
+    return output
+
+print(to_jaden_case("How can mirrors be real if our eyes aren't real"))
+
+print(to_jaden_case("The quick brown fox jumped over the lazy dog"))
