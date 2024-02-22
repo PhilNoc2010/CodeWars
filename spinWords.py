@@ -11,4 +11,14 @@
 
 def spin_words(sentence):
     # Your code goes here
-    return None
+    words = sentence.rsplit(" ")
+    for i in range(len(words)):
+        if len(words[i]) > 4:
+            words[i] = words[i][::-1]
+
+    return " ".join(words)
+
+print(spin_words("Hey fellow warriors"))
+print(spin_words("This is a test"))
+
+print(spin_words("This is another test"))
