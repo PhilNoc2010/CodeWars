@@ -1,12 +1,10 @@
 function toCamelCase(str){
+  if (str === "") {return ""}
 
-  var separator = str.includes("_")
+  string = str.replaceAll("-","_")
 
-  if(separator == true){
-    words = str.split("_")
-  }
-  else {
-    words = str.split("-")
+  if(string.includes("_")){
+    words = string.split("_")
   }
 
   outStr = words[0]
@@ -21,4 +19,4 @@ function toCamelCase(str){
   return outStr
 }
 
-console.log(toCamelCase("Justin-what-are-you-doing"))
+console.log(toCamelCase("Justin-what_are-you-doing"))
