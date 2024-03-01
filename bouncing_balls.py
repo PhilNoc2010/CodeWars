@@ -22,20 +22,22 @@
 # - h = 3, bounce = 1, window = 1.5, result is -1
 
 def bouncing_ball(h, bounce, window, result=0):
-    if h < window or bounce < 0 or bounce > 1: return -1
+    if h <= window or bounce <= 0 or bounce >= 1: return -1
     result = result +  1
     # we will work recursively, and find out how many times the ball
     # bounces past the window, both going
     # down and coming back up.
-    if h * bounce < window:
+    if h * bounce <= window:
         pass
     else:
-        bouncing_ball(h*bounce, bounce, window, result+1)
+        result = bouncing_ball(h*bounce, bounce, window, result+1)
 
     return result
 
 
-print(bouncing_ball(3, 0.66, 1.5))
-print(bouncing_ball(2, .5, 1))
+# print(bouncing_ball(3, 0.66, 1.5))
+# print(bouncing_ball(2, .5, 1))
 
-print(bouncing_ball(30, 0.66, 1.5))
+# print(bouncing_ball(30, 0.66, 1.5))
+
+print(bouncing_ball(10, 0.6, 10))
