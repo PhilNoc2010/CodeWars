@@ -6,8 +6,14 @@
 # * url = "https://www.cnet.com"                -> domain name = "cnet"
 
 def domain_name(url):
-    url_start = url.find("//") + 2
+    url_start = url.find("//")
+    if url_start == -1:
+        url_start = 0
+    else:
+        url_start += 2
     url_end = url.find("/", url_start)
+    if url_end == -1:
+        url_end = len(url) - 1
 
     domain = url[url_start:url_end]
     domain = domain.replace("www.","")
@@ -17,3 +23,5 @@ def domain_name(url):
 
 print(domain_name("http://github.com/carbonfive/raygun"))
 print(domain_name("http://www.youtube.com"))
+print(domain_name("www.xakep.ru"))
+print(domain_name("icann.org"))
