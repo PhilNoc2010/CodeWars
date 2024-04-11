@@ -19,31 +19,23 @@
 def permutations(s):
     # Code Away!
     characters = list(s)
-    #we will attmept a two loop method to work through the list and constuct permutations as we go.
-    # we will store these in a set to eliminate duplicates as we go.
-    output = set()
 
     # a single character permutation will be treated as an edge case
     if len(characters) == 1:
         return characters
 
+    output = set()
+
     for i in range(len(characters)):
-        item = characters[i]
+        x = characters[i]
+        xs = characters[:i] + characters[i+1:]
+        for j in permutations(xs):
+            output.add(x+j)
 
-        for j in range(len(characters)):
-            if (i != j):
-                item = item + characters[j]
-        output.add(item)
-        for k in range(len(characters)-1, 0, -1):
-            print(k)
-            if (i != k):
-                item = item + characters[k]
-        output.add(item)
+    return list(output)
 
-
-    print(output)
-
-# permutations("a")
-# permutations("ab")
-permutations("abc")
-# permutations("aabb")
+print(permutations("a"))
+print(permutations("ab"))
+print(permutations("abc"))
+print(permutations("aabb"))
+print(permutations("ankle"))
